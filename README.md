@@ -1,2 +1,2 @@
 # Groceries
-Script opdracht 18
+Script opdracht 19, Script stacks.

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\View;
-
 
 class GroceriesController extends Controller
 {
@@ -13,11 +11,9 @@ class GroceriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
     public function index()
     {
-      return view("groceries");
+      return view('groceries');
     }
 
     /**
@@ -27,7 +23,7 @@ class GroceriesController extends Controller
      */
     public function create()
     {
-        return 'create';
+        //
     }
 
     /**

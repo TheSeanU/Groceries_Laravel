@@ -1,4 +1,7 @@
-<!-- @extends ('layout') -->
+@extends ('layout')
+@section ('content')
+
+
 
 <div class="container-fluid">
   <div class="row w-100 m-auto">
@@ -7,3 +10,6 @@
       </div>
     </div>
 </div>
+
+
+@endsection

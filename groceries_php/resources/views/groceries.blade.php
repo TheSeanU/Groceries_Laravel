@@ -67,7 +67,7 @@
  </div>
  <div class="col border">
 <!--- popup that will enable product editing -->
-   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_product">
+   <button type="button" class="btn btn-primary close" data-bs-toggle="modal" data-bs-target="#edit_product">
      Edit product
    </button>
    <p>product edit. Make button to a popup to edit the product in the database</p>
@@ -77,7 +77,7 @@
 
 
 
-<div class="modal fade" id="edit_product" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+<div class="modal fade close" id="edit_product" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -108,12 +108,10 @@
          </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard</button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
-
-
 @endsection

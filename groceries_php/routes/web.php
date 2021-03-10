@@ -14,9 +14,9 @@ use App\Http\Controllers\GroceriesController;
 |
 */
 
-Route::get('/', [GroceriesController::class,
-  'index'])->name('groceries.index');
+Route::get('/', [GroceriesController::class,'index'])->name('groceries.index');
 
+// Route::get('/', [GroceriesController::class,'fetch'])->name('groceries.fetch');
 
 Route::get('/create', [GroceriesController::class,
   'create'])->name('groceries.index');

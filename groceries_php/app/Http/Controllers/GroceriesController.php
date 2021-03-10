@@ -13,8 +13,16 @@ class GroceriesController extends Controller
      */
     public function index()
     {
-        return view('groceries');
+      return view('groceries', [
+        'product' => \App\Models\Products::latest()->get()
+      ]);
     }
+
+    //
+    // public function fetch()
+    // {
+    //   return $product;
+    // }
 
     /**
      * Show the form for creating a new resource.

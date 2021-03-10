@@ -48,31 +48,31 @@
 
 
 
-
 <!-- product from database -->
+@foreach ($product as $key => $value)
  <div class="row row-cols-4 w-50 m-auto">
-    <div class="col border">
-      <a class="btn btn-danger" href="#" role="button">Remove product</a>
-      <p>product remove. Remove a product from the database</p>
+    <div class="col">
+      <p class="tooltip--left" data-tooltip="Hey">Short</p>
     </div>
-    <div class="col border">
+    <div class="col">
 
-     <p>product name. Get the product name from the database</p>
-     <p>product description. Get the product description for the database</p>
-
+     <h6>{{$value->product_name}}</h6>
+     <span>description:</span>
+     <p>{{$value->product_description}}</p>
 </div>
-<div class="col border">
-     <p>product price. Get the product price from the database</p>
-     <p>product amount. Get the product amount from the database</p>
+<div class="col">
+  <h6>{{$value->product_price}}</h6>
+  <p class="border">{{$value->product_amount}}</p>
  </div>
- <div class="col border">
+ <div class="col">
 <!--- popup that will enable product editing -->
    <button type="button" class="btn btn-primary close" data-bs-toggle="modal" data-bs-target="#edit_product">
      Edit product
    </button>
-   <p>product edit. Make button to a popup to edit the product in the database</p>
+
  </div>
  </div>
+ @endforeach
 
 
 

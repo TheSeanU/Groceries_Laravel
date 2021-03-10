@@ -15,21 +15,20 @@ use App\Http\Controllers\GroceriesController;
 */
 
 Route::get('/', [GroceriesController::class,
-  'index'->name('groceries.index');
-]);
+  'index'])->name('groceries.index');
+
 
 Route::get('/create', [GroceriesController::class,
-  'create'->name('groceries.index');
-]);
+  'create'])->name('groceries.index');
+
 
 Route::get('/{grocerie}/edit', [GroceriesController::class,
-  'edit'->name('groceries.edit');
-]);
+  'edit'])->name('groceries.edit');
+
 
 Route::match(['put', 'patch'], '/{grocerie}/update', [ GroceriesController::class,
-  'update'->name('groceries.update');
-]);
+  'update'])->name('groceries.update');
+
 
 Route::delete('/{grocerie}/delete', [ GroceriesController::class,
-  'delete'->name('groceries.delete');
-]);
+  'delete'])->name('groceries.delete');

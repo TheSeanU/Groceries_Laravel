@@ -42,7 +42,6 @@
      <hr>
    </div>
  </div>
- doest work
 <!-- product from database -->
 @foreach ($product as $key => $value)
  <div class="row row-cols-4 w-50 m-auto">

@@ -18,12 +18,6 @@ class GroceriesController extends Controller
       ]);
     }
 
-    //
-    // public function fetch()
-    // {
-    //   return $product;
-    // }
-
     /**
      * Show the form for creating a new resource.
      *

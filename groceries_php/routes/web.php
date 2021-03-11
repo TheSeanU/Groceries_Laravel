@@ -14,21 +14,14 @@ use App\Http\Controllers\GroceriesController;
 |
 */
 
-Route::get('/', [GroceriesController::class,'index'])->name('groceries.index');
+Route::post('/', [GroceriesController::class,
+'store'])->name('groceries.store');
 
-// Route::get('/', [GroceriesController::class,'fetch'])->name('groceries.fetch');
+Route::get('/', [GroceriesController::class,
+  'index'])->name('groceries.index');
 
-Route::get('/create', [GroceriesController::class,
-  'create'])->name('groceries.index');
+Route::post('/', [GroceriesController::class,
+'edit'])->name('groceries.edit');
 
-
-Route::get('/{grocerie}/edit', [GroceriesController::class,
-  'edit'])->name('groceries.edit');
-
-
-Route::match(['put', 'patch'], '/{grocerie}/update', [ GroceriesController::class,
-  'update'])->name('groceries.update');
-
-
-Route::delete('/{grocerie}/delete', [ GroceriesController::class,
+Route::delete('/', [ GroceriesController::class,
   'delete'])->name('groceries.delete');

@@ -11,22 +11,13 @@ class GroceriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-      return view('groceries', [
-        'product' => \App\Models\Products::latest()->get()
-      ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+     public function index()
+     {
+       return view('groceries', [
+         'product' => \App\Models\Products::latest()->get()
+       ]);
+         return view('groceries');
+     }
 
     /**
      * Store a newly created resource in storage.
@@ -36,18 +27,17 @@ class GroceriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+      $product = new \App\Models\Products();
+
+      $product->product_name = Request('product_name');
+      $product->product_description = Request('product_description');
+      $product->product_price = Request('product_price');
+      $product->product_amount = Request('product_amount');
+
+      $product->save();
+
+      return redirect('/');
     }
 
     /**
@@ -58,20 +48,14 @@ class GroceriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = \App\Models\Products::find($id);
+
+        return view('groceries.edit', ['product'=>$product]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+
+
+
 
     /**
      * Remove the specified resource from storage.

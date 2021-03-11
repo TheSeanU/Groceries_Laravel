@@ -85,9 +85,26 @@ SVG Icons - svgicons.sparkk.fr
   stroke-width: 1;
 }
 
+/* Chrome, Safari, Edge, Opera */
+.shadow-sm .arrow input::-webkit-outer-spin-button,
+.shadow-sm .arrow input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0; 
+}
+
+/* Firefox */
+.shadow-sm .arrow input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+
 .container-fluid .text-right .text-wrap{
-	display:inline;
-	float:right;
+	/* display:inline; */
+	/* float:right; */
 	margin-left:auto;
 	margin-right:15px;
 }
@@ -121,9 +138,9 @@ SVG Icons - svgicons.sparkk.fr
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.text-end{
+/* .text-end{
   float: right;
-}
+} */
 .w-auto{
   width: auto;
   height: auto;

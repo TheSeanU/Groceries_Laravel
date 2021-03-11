@@ -20,8 +20,8 @@ Route::post('/', [GroceriesController::class,
 Route::get('/', [GroceriesController::class,
   'index'])->name('groceries.index');
 
-Route::post('/', [GroceriesController::class,
-'edit'])->name('groceries.edit');
+// Route::post('/', [GroceriesController::class,
+// 'edit'])->name('groceries.edit');
 
 Route::delete('/', [ GroceriesController::class,
   'delete'])->name('groceries.delete');

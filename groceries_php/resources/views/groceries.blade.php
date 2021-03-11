@@ -19,7 +19,7 @@
        <label>Product</label>
          <input type="text" class="form-control" name="product_name" placeholder="Name" required>
        </div>
-       <div class="col">
+       <div class="arrow col">
          <label>Price</label>
          <input type="number" class="currency form-control" name="product_price" placeholder="Price" required>
          </div>
@@ -50,7 +50,7 @@
 
 
 <!-- product from database -->
-@foreach ($product as $key => $value)
+@foreach ($product as $key)
  <div class="row row w-50 m-auto">
    <div class="col-1">
      <a href="#" data-tooltip="Remove Product!"><svg class="svg-icon" viewBox="0 0 20 20">
@@ -61,16 +61,16 @@
    </a>
    </div>
     <div class="col-4">
-     <h6>{{$value->product_name}}</h6>
-     <p>{{$value->product_description}}</p>
+     <h6>{{$key->product_name}}</h6>
+     <p>{{$key->product_description}}</p>
    </div>
   <div class="col text-right">
-    <h6><span>‎€ ‎</span>{{$value->product_price}}</h6>
-    <p data-tooltip="Product amount" class="badge bg-primary text-wrap">{{$value->product_amount}}</p>
+    <h6><span>‎€ ‎</span>{{$key->product_price}}</h6>
+    <p data-tooltip="Product amount" class="badge bg-primary text-wrap">{{$key->product_amount}}</p>
    </div>
   <div class="col w-auto">
 <!--- popup that will enable product editing -->
-   <a href="#" type="button" class="btn btn-primary close btn-sm text-end" data-bs-toggle="modal" data-bs-target="#edit_product">
+   <a href="{{$key->product}}" type="button" class="btn btn-primary close btn-sm text-end" data-bs-toggle="modal" data-bs-target="#edit_product_{{$key->id}}" >
     <p class="rotate">EDIT</p>
    </a>
   </div>
@@ -80,46 +80,48 @@
     <hr>
   </div>
  </div>
- @endforeach
 
-@foreach ($product as $key => $value)
-<div class="modal fade close" id="edit_product" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+
+<!-- For editing products -->
+<div class="modal fade close" id="edit_product_{{$key->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title">Edit the product</h6>
+        <h6 class="modal-title">Edit the product...</h6>
+        <button data-tooltip="Dismiss changes" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="/" class="needs-validation">
+        <form method="POST" action="([GroceriesController::class,'edit'])">
            <div class="row">
              <div class="col">
                <label>Product</label>
-                 <input type="text" class="form-control" name="product_name" placeholder="Name" value="{{ $value->product_name }}">
+                 <input type="text" class="form-control" name="product_name" value="{{$key->product_name}}">
                </div>
-               <div class="col">
+               <div class="arrow col">
                  <label>Price</label>
-                 <input type="number" class="currency form-control" name="product_price" value="{{ $value->product_price }}">
+                 <input type="number" class="currency form-control" name="product_price" value="{{$key->product_price}}">
                  </div>
                <div class="col col-quan">
                  <label>Quantity</label>
-                   <input type="number" class="form-control" name="product_amount" value="{{ $value->product_amount }}" >
+                   <input type="number" class="form-control" name="product_amount" value="{{$key->product_amount}}" >
                  </div>
              </div>
              <div class="row">
                <div class="col pb-2 pt-1">
                  <label class="p-0">Discription</label>
-                 <textarea class="form-control" name="product_description" value="{{ $value->product_description }}"></textarea>
+                 <textarea class="form-control textarea" name="product_description" >{{$key->product_description}}</textarea>
                </div>
              </div>
          </form>
       </div>
       <div class="modal-footer">
-        <button data-tooltip="dismiss changes" type="button" class="btn-close btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
-@endforeach
 
+
+@endforeach
 @endsection

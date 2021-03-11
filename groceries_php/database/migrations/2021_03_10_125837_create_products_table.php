@@ -18,13 +18,9 @@ class CreateProductsTable extends Migration
             $table->text('product_name');
             $table->text('product_description');
             $table->decimal('product_price', $precision = 8, $scale = 2);
-            $table->int('product_amount');
+            $table->bigInteger('product_amount');
             $table->timestamps();
         });
-
-
-
-
     }
 
     /**

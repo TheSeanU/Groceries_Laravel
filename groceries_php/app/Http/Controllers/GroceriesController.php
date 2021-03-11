@@ -16,7 +16,6 @@ class GroceriesController extends Controller
        return view('groceries', [
          'product' => \App\Models\Products::latest()->get()
        ]);
-         return view('groceries');
      }
 
     /**
@@ -46,12 +45,12 @@ class GroceriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $product = \App\Models\Products::find($id);
-
-        return view('groceries.edit', ['product'=>$product]);
-    }
+    // public function edit($id)
+    // {
+    //     $edit_product = \App\Models\Products::find($id);
+    //
+    //     return view('groceries.edit', ['edit_product'=>$edit_product]);
+    // }
 
 
 

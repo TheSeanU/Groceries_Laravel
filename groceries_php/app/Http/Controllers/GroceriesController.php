@@ -53,7 +53,12 @@ class GroceriesController extends Controller
      */
     public function destroy($id)
     {
-        \App\Models\Products::find($id)->delete($this->validateProduct());
+        \App\Models\Products::find($id)->delete(Request([
+          'product_name' => 'product_name',
+          'product_description' => 'product_description',
+          'product_price' => 'product_price',
+          'product_amount' => 'product_amount'
+        ]));
 
         return redirect('/');
 
@@ -63,7 +68,7 @@ class GroceriesController extends Controller
     public function validateProduct()
     {
       return Request()->validate([
-        'product_name' => 'required',
+        'product_name' => 'required|min:2',
         'product_description' => 'required',
         'product_price' => 'required',
         'product_amount' => 'required'

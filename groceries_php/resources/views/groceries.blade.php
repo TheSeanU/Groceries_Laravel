@@ -7,7 +7,16 @@
         <h3 class="text-primary">Grocery List</h3>
       </div>
    </div>
-
+   <style>
+   .arrow input::-webkit-outer-spin-button,
+   .arrow input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+   }
+   .arrow input[type="number"] {
+      -moz-appearance: textfield;
+   }
+   </style>
 
 <!-- add product to database  -->
 <form method="POST" action="/" accept-charset="UTF-8" class="needs-validation w-50 m-auto p-3 text-dark border shadow-sm rounded">
@@ -17,11 +26,11 @@
    <div class="row">
      <div class="col">
        <label>Product</label>
-         <input type="text" class="form-control" name="product_name" placeholder="Name">
+         <input type="text" class="form-control" name="product_name" placeholder="Name" required>
        </div>
        <div class="arrow col">
          <label>Price</label>
-         <input type="number" class="currency form-control" name="product_price" placeholder="Price" required>
+         <input type="number" class="currency arrow form-control" name="product_price" step="any" min="0" placeholder="Price" required>
          </div>
        <div class="col">
          <label>Quantity</label>
@@ -107,7 +116,7 @@
                </div>
                <div class="arrow col">
                  <label>Price</label>
-                 <input type="number" class="currency form-control" name="product_price" value="{{$key->product_price}}">
+                 <input type="number" class="arrow form-control" name="product_price" value="{{$key->product_price}}">
                  </div>
                <div class="col col-quan">
                  <label>Quantity</label>

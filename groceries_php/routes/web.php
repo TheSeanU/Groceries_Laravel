@@ -13,15 +13,14 @@ use App\Http\Controllers\GroceriesController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [GroceriesController::class,'index'])
+  ->name('groceries.index');
 
-Route::post('/', [GroceriesController::class,
-'store'])->name('groceries.store');
+Route::post('/', [GroceriesController::class, 'store'] )
+  ->name('groceries.store');
 
-Route::get('/', [GroceriesController::class,
-  'index'])->name('groceries.index');
+Route::put('/{update}', [GroceriesController::class, 'update'])
+  ->name('groceries.update');
 
-// Route::post('/', [GroceriesController::class,
-// 'edit'])->name('groceries.edit');
-
-Route::delete('/', [ GroceriesController::class,
-  'delete'])->name('groceries.delete');
+Route::delete('/{destroy}', [ GroceriesController::class, 'destroy'])
+  ->name('groceries.destroy');

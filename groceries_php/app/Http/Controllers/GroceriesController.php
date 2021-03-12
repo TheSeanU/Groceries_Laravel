@@ -18,6 +18,7 @@ class GroceriesController extends Controller
        ]);
      }
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -26,18 +27,10 @@ class GroceriesController extends Controller
      */
     public function store(Request $request)
     {
-
-      $product = new \App\Models\Products();
-
-      $product->product_name = Request('product_name');
-      $product->product_description = Request('product_description');
-      $product->product_price = Request('product_price');
-      $product->product_amount = Request('product_amount');
-
-      $product->save();
-
+      \App\Models\Products::create($this->validateProduct());
       return redirect('/');
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -45,15 +38,11 @@ class GroceriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function edit($id)
-    // {
-    //     $edit_product = \App\Models\Products::find($id);
-    //
-    //     return view('groceries.edit', ['edit_product'=>$edit_product]);
-    // }
-
-
-
+    public function update($id)
+    {
+      \App\Models\Products::find($id)->update($this->validateProduct());
+      return redirect('/');
+    }
 
 
     /**
@@ -64,6 +53,21 @@ class GroceriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \App\Models\Products::find($id)->delete($this->validateProduct());
+
+        return redirect('/');
+
     }
+
+
+    public function validateProduct()
+    {
+      return Request()->validate([
+        'product_name' => 'required',
+        'product_description' => 'required',
+        'product_price' => 'required',
+        'product_amount' => 'required'
+      ]);
+    }
+
 }

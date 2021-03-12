@@ -5,43 +5,51 @@
    <div class="row w-50 m-auto">
       <div class="col p-0 m-0">
         <h3 class="text-primary">Grocery List</h3>
+        @if (\Session::has('success'))
+        <div class="alert alert-success" role="alert">
+          <p class="m-0">{!! \Session::get('success') !!}</p>
+        </div>
+        @endif
       </div>
    </div>
-   <style>
-   .arrow input::-webkit-outer-spin-button,
-   .arrow input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-   }
-   .arrow input[type="number"] {
-      -moz-appearance: textfield;
-   }
-   </style>
 
 <!-- add product to database  -->
 <form method="POST" action="/" accept-charset="UTF-8" class="needs-validation w-50 m-auto p-3 text-dark border shadow-sm rounded">
-<input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+@csrf
   <h6 class="pb-0">Add a item to your grocery list...</h6>
   <hr class="pt-0 mt-0">
    <div class="row">
      <div class="col">
        <label>Product</label>
-         <input type="text" class="form-control" name="product_name" placeholder="Name" required>
+         <input type="text" class="form-control @error('product_name') is-invalid @enderror" name="product_name" placeholder="Name" >
+         @error('product_name')
+         <div class="alert alert-danger">{{ $message }}</div>
+         @enderror
        </div>
        <div class="arrow col">
          <label>Price</label>
-         <input type="number" class="currency arrow form-control" name="product_price" step="any" min="0" placeholder="Price" required>
+         <input type="number" class="currency form-control @error('product_price') is-invalid @enderror" name="product_price" step="any" min="0" placeholder="Price">
+         @error('product_price')
+         <div class="alert alert-danger">{{ $message }}</div>
+         @enderror
          </div>
        <div class="col">
          <label>Quantity</label>
-           <input type="number" class="form-control" name="product_amount" value="1" required>
+           <input type="number" class="form-control @error('product_amount') is-invalid @enderror" name="product_amount" value="1" >
+           @error('product_amount')
+           <div class="alert alert-danger">{{ $message }}</div>
+           @enderror
          </div>
      </div>
      <div class="row">
        <div class="col pb-2 pt-1">
          <label class="p-0">Discription</label>
-         <textarea class="form-control" name="product_description" placeholder="Enter a description"></textarea>
+         <textarea class="form-control @error('product_description') is-invalid @enderror" name="product_description" placeholder="Enter a description"></textarea>
+         @error('product_description')
+         <div class="alert alert-danger">{{ $message }}</div>
+         @enderror
        </div>
+
      </div>
      <div class="row">
        <div class="col text-end">
@@ -112,21 +120,33 @@
            <div class="row">
              <div class="col">
                <label>Product</label>
-                 <input type="text" class="form-control" name="product_name" value="{{$key->product_name}}">
+                 <input type="text" class="form-control @error('product_name') is-invalid @enderror" name="product_name" value="{{$key->product_name}}">
+                 @error('product_name')
+                 <div class="alert alert-danger">{{ $message }}</div>
+                 @enderror
                </div>
                <div class="arrow col">
                  <label>Price</label>
-                 <input type="number" class="arrow form-control" name="product_price" value="{{$key->product_price}}">
+                 <input type="number" class="currency form-control @error('product_price') is-invalid @enderror" name="product_price" value="{{$key->product_price}}">
+                 @error('product_price')
+                 <div class="alert alert-danger">{{ $message }}</div>
+                 @enderror
                  </div>
                <div class="col col-quan">
                  <label>Quantity</label>
-                   <input type="number" class="form-control" name="product_amount" value="{{$key->product_amount}}" >
+                   <input type="number" class="form-control @error('product_amount') is-invalid @enderror" name="product_amount" value="{{$key->product_amount}}" >
+                   @error('product_amount')
+                   <div class="alert alert-danger">{{ $message }}</div>
+                   @enderror
                  </div>
              </div>
              <div class="row">
                <div class="col pb-2 pt-1">
                  <label class="p-0">Discription</label>
-                 <textarea class="form-control textarea" name="product_description" >{{$key->product_description}}</textarea>
+                 <textarea class="form-control @error('product_description') is-invalid @enderror" name="product_description" >{{$key->product_description}}</textarea>
+                 @error('product_description')
+                 <div class="alert alert-danger">{{ $message }}</div>
+                 @enderror
                </div>
              </div>
       </div>

@@ -28,7 +28,7 @@ class GroceriesController extends Controller
     public function store(Request $request)
     {
       \App\Models\Products::create($this->validateProduct());
-      return redirect('/');
+      return redirect()->back()->with('success', 'Product added succesfully!');
     }
 
 
@@ -38,10 +38,10 @@ class GroceriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(\App\Models\Products $update)
     {
-      \App\Models\Products::find($id)->update($this->validateProduct());
-      return redirect('/');
+      $update->update($this->validateProduct());
+      return redirect()->back()->with('success', 'Product changed succesfully!');
     }
 
 
@@ -51,16 +51,17 @@ class GroceriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(\App\Models\Products $destroy)
     {
-        \App\Models\Products::find($id)->delete(Request([
+        $destroy->delete(Request([
           'product_name' => 'product_name',
           'product_description' => 'product_description',
           'product_price' => 'product_price',
           'product_amount' => 'product_amount'
         ]));
 
-        return redirect('/');
+        return redirect()->back()->with('success', 'Product successfully removed!');
+
 
     }
 
